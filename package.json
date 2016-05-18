@@ -1,0 +1,33 @@
+{
+  "name": "gulp-critical-css",
+  "version": "0.0.0",
+  "description": "My spectacular gulp plugin",
+  "license": "MIT",
+  "repository": "mscharl/gulp-critical-css",
+  "author": {
+    "name": "Michael Scharl",
+    "email": "michael.scharl@me.com",
+    "url": "michael.scharl.me"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "postcss": "^5.0.21",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "xo": "^0.14.0"
+  }
+}
