@@ -30,6 +30,23 @@ gulp.task('default', () => {
 );
 ```
 
+## Usage in CSS
+By default every rule that contains `critical: this;` is extracted into the critical file.
+
+If you want to extract Selectors matching a RegExp or selectors that does not contain `critical: this;` take a look at the options.
+
+```css
+// This Selector will be extracted
+.my-selector {
+    critical: this;
+    color: red;
+}
+
+// This Selector will not
+.my-other-selector {
+    color: green;
+}
+``
 
 ## API
 
@@ -37,12 +54,17 @@ gulp.task('default', () => {
 
 #### options
 
-##### foo
+##### selectors
 
-Type: `boolean`<br>
-Default: `false`
+Type: `Array<String,RegExp>`<br>
+Default: `[]`
 
-Lorem ipsum.
+Lets you define Selectors to extract into critical.
+This may be a simple string like `.navbar > .nav`, `a` or a `RegExp`.
+
+Strings are compared to the found selectors with
+`foundSelector.indexOf(selector) !== -1` Regular expressions are tested with
+`regEx.test(foundSelector)`
 
 
 ## License

@@ -17,10 +17,10 @@ const extractCritical = require('./plugins/extractCritical.js');
 
 /**
  * Set defaults
- * @type {{verbose: boolean}}
+ * @type {{selectors: Array}}
  */
 const DEFAULT_OPTIONS = {
-	verbose: false
+	selectors: []
 };
 
 /**
@@ -28,7 +28,22 @@ const DEFAULT_OPTIONS = {
  * @param opts
  */
 module.exports = function (opts) {
+	/**
+	 * Set options
+	 * @type {{selectors: Array}}
+	 */
 	opts = assign({}, DEFAULT_OPTIONS, opts || {});
+
+	if(!Array.isArray(opts.selectors)) {
+		throw new gutil.PluginError('gulp-critical-css', 'Option `selectors` is expected to be an array');
+	}
+	opts.selectors.every((selector) => {
+		if(typeof selector !== 'string' && !(selector instanceof RegExp)) {
+			throw new gutil.PluginError('gulp-critical-css', 'Option `selectors` only supports `string` and `RegExp`');
+		}
+
+		return true;
+	});
 
 	/**
 	 * The transformer
