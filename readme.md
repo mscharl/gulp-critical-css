@@ -46,7 +46,7 @@ If you want to extract Selectors matching a RegExp or selectors that does not co
 .my-other-selector {
     color: green;
 }
-``
+```
 
 ## API
 
