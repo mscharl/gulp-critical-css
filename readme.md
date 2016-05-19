@@ -67,6 +67,11 @@ Strings are compared to the found selectors with
 `regEx.test(foundSelector)`
 
 
+## Next Steps
+- [ ] Support for Sourcemaps
+
+Any Ideas? [Tell me!](https://github.com/mscharl/gulp-critical-css/issues/new?labels=enhancement)
+
 ## License
 
 MIT © [Michael Scharl](https://michael.scharl.me)
