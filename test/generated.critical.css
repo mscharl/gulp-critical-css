@@ -1,0 +1,9 @@
+.my-class {
+    color: green;
+}
+
+@media screen and (max-width: 100px) {
+    .my-class .critical {
+        font-size: 14px;
+    }
+}

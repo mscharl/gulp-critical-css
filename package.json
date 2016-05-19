@@ -23,7 +23,9 @@
   ],
   "dependencies": {
     "gulp-util": "^3.0.7",
+    "lodash.assign": "^4.0.9",
     "postcss": "^5.0.21",
+    "pretty-hrtime": "^1.0.2",
     "through2": "^2.0.1"
   },
   "devDependencies": {

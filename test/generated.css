@@ -1,0 +1,18 @@
+body {
+    background: red;
+}
+.my-class {
+    color: green;
+}
+#my-id {
+    border: 1px solid gray;
+}
+
+@media screen and (max-width: 100px) {
+    body {
+        background: orange;
+    }
+    .my-class .critical {
+        font-size: 14px;
+    }
+}
