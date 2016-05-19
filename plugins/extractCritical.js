@@ -6,7 +6,7 @@ module.exports = postcss.plugin('extractCritical', function (opts) {
 
 	return function (css) {
 		css.walkRules(function (rule) {
-			var isCritical = opts.selectors.some((tester) => {
+			var isCritical = opts.selectors.some(function (tester) {
 				if (tester instanceof RegExp) {
 					return tester.test(rule.selector);
 				}

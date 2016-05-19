@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Loading modules
  */
@@ -37,7 +35,7 @@ module.exports = function (opts) {
 	if (!Array.isArray(opts.selectors)) {
 		throw new gutil.PluginError('gulp-critical-css', 'Option `selectors` is expected to be an array');
 	}
-	opts.selectors.every((selector) => {
+	opts.selectors.every(function (selector) {
 		if (typeof selector !== 'string' && !(selector instanceof RegExp)) {
 			throw new gutil.PluginError('gulp-critical-css', 'Option `selectors` only supports `string` and `RegExp`');
 		}
