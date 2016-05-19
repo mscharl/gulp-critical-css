@@ -34,11 +34,11 @@ module.exports = function (opts) {
 	 */
 	opts = assign({}, DEFAULT_OPTIONS, opts || {});
 
-	if(!Array.isArray(opts.selectors)) {
+	if (!Array.isArray(opts.selectors)) {
 		throw new gutil.PluginError('gulp-critical-css', 'Option `selectors` is expected to be an array');
 	}
 	opts.selectors.every((selector) => {
-		if(typeof selector !== 'string' && !(selector instanceof RegExp)) {
+		if (typeof selector !== 'string' && !(selector instanceof RegExp)) {
 			throw new gutil.PluginError('gulp-critical-css', 'Option `selectors` only supports `string` and `RegExp`');
 		}
 

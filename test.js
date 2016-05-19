@@ -39,7 +39,6 @@ function prepareTest(cb, plugin, sourceDir) {
 	});
 }
 
-
 /**
  * Test basic file handling
  */
@@ -63,7 +62,6 @@ test.serial.cb('Expect second file name to be critical', t => {
 		t.end();
 	});
 });
-
 
 /**
  * Test output of plugin with default options
@@ -100,7 +98,6 @@ test.cb('Expect critical-file to be critical only', t => {
 	});
 });
 
-
 /**
  * Test output of plugin with custom options
  */
@@ -130,4 +127,88 @@ test('Fail when selectors-option does contain elements that are not `String` or 
 	t.notThrows(() => fn({
 		selectors: [new RegExp('test', 'i')]
 	}));
+});
+
+test.cb('Expect critical rules by string to be critical only', t => {
+	const plugin = fn({
+		selectors: ['.navbar-brand']
+	});
+
+	prepareTest((files) => {
+		fs.readFile(path.join(__dirname, 'test', 'custom', 'generated-string.critical.css'), function (err, data) {
+			if (err) {
+				throw err;
+			}
+
+			const generatedContent = files[1].contents.toString();
+			const expectedContent = data.toString();
+
+			require('fs').writeFile('test.css', files[1].contents.toString());
+
+			t.is(generatedContent, expectedContent);
+			t.end();
+		});
+	}, plugin, 'custom');
+});
+
+test.cb('Expect cleaned rules by string to be cleaned', t => {
+	const plugin = fn({
+		selectors: ['.navbar-brand']
+	});
+
+	prepareTest((files) => {
+		fs.readFile(path.join(__dirname, 'test', 'custom', 'generated-string.css'), function (err, data) {
+			if (err) {
+				throw err;
+			}
+
+			const generatedContent = files[0].contents.toString();
+			const expectedContent = data.toString();
+
+			t.is(generatedContent, expectedContent);
+			t.end();
+		});
+	}, plugin, 'custom');
+});
+
+test.cb('Expect critical rules by RegExp to be critical only', t => {
+	const plugin = fn({
+		selectors: [/^\.navbar-brand/]
+	});
+
+	prepareTest((files) => {
+		fs.readFile(path.join(__dirname, 'test', 'custom', 'generated-regexp.critical.css'), function (err, data) {
+			if (err) {
+				throw err;
+			}
+
+			const generatedContent = files[1].contents.toString();
+			const expectedContent = data.toString();
+
+			require('fs').writeFile('test.css', files[1].contents.toString());
+
+			t.is(generatedContent, expectedContent);
+			t.end();
+		});
+	}, plugin, 'custom');
+});
+
+test.cb('Expect cleaned rules by RegExp to be cleaned', t => {
+	const plugin = fn({
+		selectors: [/^\.navbar-brand/]
+	});
+
+	prepareTest((files) => {
+		fs.readFile(path.join(__dirname, 'test', 'custom', 'generated-regexp.css'), function (err, data) {
+			if (err) {
+				throw err;
+			}
+
+			const generatedContent = files[0].contents.toString();
+			const expectedContent = data.toString();
+
+			t.is(generatedContent, expectedContent);
+			t.end();
+		});
+	}, plugin, 'custom');
 });
