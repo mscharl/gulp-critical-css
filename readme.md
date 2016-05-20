@@ -1,4 +1,4 @@
-# gulp-critical-css [![Build Status](https://travis-ci.org/mscharl/gulp-critical-css.svg?branch=master)](https://travis-ci.org/mscharl/gulp-critical-css) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+# gulp-critical-css [![Build Status](https://travis-ci.org/mscharl/gulp-critical-css.svg?branch=master)](https://travis-ci.org/mscharl/gulp-critical-css) [![npm](https://img.shields.io/npm/v/gulp-critical-css.svg?maxAge=2592000)]() [![npm](https://img.shields.io/npm/dm/gulp-critical-css.svg?maxAge=2592000)]() [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 
 > Extract critical css rules into a seperate stylesheet
