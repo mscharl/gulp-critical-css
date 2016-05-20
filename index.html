@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>gulp-critical-css by Michael Scharl</title>
 
+    <!--@formatter:off-->
     <meta property="og:title" content="gulp-critical-css">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mscharl.github.io/gulp-critical-css/">
@@ -35,36 +36,44 @@
     <meta name="application-name" content="gulp-critical-css">
     <meta name="msapplication-TileColor" content="#cf4646">
     <meta name="theme-color" content="#cf4646">
+    <!--@formatter:on-->
 
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/app.critical.css">
 </head>
 <body>
 <header class="gcc-header">
     <div class="gcc-header__container">
         <h1 class="gcc-header__title">gulp-critical-css</h1>
         <p>Extract critical css rules into a separate stylesheet</p>
-        <code class="gcc-header__code" onclick="ga('send','event','Click','Copy install command')">
+        <code class="gcc-header__code"
+              onclick="ga('send','event','Click','Copy install command')">
             npm install --save-dev gulp-critical-css
         </code>
     </div>
 </header>
 
 
-<a class="github-fork-ribbon right-top fixed" href="https://github.com/mscharl/gulp-critical-css" title="View on GitHub">View on GitHub</a>
+<a class="github-fork-ribbon right-top fixed"
+   href="https://github.com/mscharl/gulp-critical-css"
+   title="View on GitHub">View on GitHub</a>
 
+<!--@formatter:off-->
 <!--<script src="js/app.js"></script>-->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400"
-      rel="stylesheet"
-      type="text/css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,400">
+<link rel="stylesheet" href="css/app.css">
 
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {(i[r].q = i[r].q || []).push(arguments)}, i[r].l = 1 * new Date();
+        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+        a.async = 1; a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-52695758-2', 'auto');
     ga('send', 'pageview');
 </script>
+<!--@formatter:on-->
 </body>
 </html>

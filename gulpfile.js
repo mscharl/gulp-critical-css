@@ -29,6 +29,7 @@ const gulp            = require('gulp'),
       svgSymbols      = require('gulp-svg-symbols'),
 
       sass            = require('gulp-sass'),
+      criticalCSS     = require('gulp-critical-css'),
       postcss         = require('gulp-postcss'),
       autoprefixer    = require('autoprefixer'),
       cssnano         = require('cssnano'),
@@ -41,35 +42,34 @@ const gulp            = require('gulp'),
       source          = require('vinyl-source-stream'),
       buffer          = require('vinyl-buffer');
 
-const POSTCSS_PLUGINS_DEV               = [autoprefixer(), cssnano()],
-      POSTCSS_PLUGINS_PROD              = [discardComments({removeAll: true}), autoprefixer(), cssnano()],
+const POSTCSS_PLUGINS_DEV       = [autoprefixer(), cssnano()],
+      POSTCSS_PLUGINS_PROD      = [discardComments({removeAll: true}), autoprefixer(), cssnano()],
 
-      UGLIFY_OPTIONS                    = {
+      UGLIFY_OPTIONS            = {
           compress: {
               drop_console : true,
               drop_debugger: true,
               screw_ie8    : true
           }
       },
-      UGLIFY_OPTIONS_IE8                = {
+      UGLIFY_OPTIONS_IE8        = {
           compress: {
               drop_console : true,
               drop_debugger: true
           }
       },
 
-      SOURCES_IMAGES                    = 'src/img/**/*.{jpg,jpeg,png,svg}',
-      SOURCES_STYLES_APP                = 'src/sass/app.scss',
-      SOURCES_WATCH_STYLES_APP          = 'src/sass/**/*.scss',
-      SOURCES_CLEAN_IMAGES              = ['./img/**/*.{jpg,jpeg,png,svg}', '!./img/svg-sprites/**/*.svg'],
-      SOURCES_CLEAN_STYLES_APP          = ['./css/app.css', './css/app.css.map'],
-      SOURCES_CLEAN_SCRIPTS_APP         = ['./js/app.js', './js/app.js.map'];
+      SOURCES_IMAGES            = 'src/img/**/*.{jpg,jpeg,png,svg}',
+      SOURCES_STYLES_APP        = 'src/sass/app.scss',
+      SOURCES_WATCH_STYLES_APP  = 'src/sass/**/*.scss',
+      SOURCES_CLEAN_IMAGES      = ['./img/**/*.{jpg,jpeg,png,svg}', '!./img/svg-sprites/**/*.svg'],
+      SOURCES_CLEAN_STYLES_APP  = ['./css/app.css', './css/app.css.map'],
+      SOURCES_CLEAN_SCRIPTS_APP = ['./js/app.js', './js/app.js.map'];
 
 
 /*******************************************
  * Define Tasks
  *******************************************/
-
 
 
 /**
@@ -86,10 +86,11 @@ gulp.task('images', ['clean:images'], () =>
  */
 gulp.task('styles', ['clean:styles'], () =>
     gulp.src(SOURCES_STYLES_APP)
-        .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
+        // .pipe(gutil.env.production ? gutil.noop() : sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
+        .pipe(criticalCSS())
         .pipe(postcss(gutil.env.production ? POSTCSS_PLUGINS_PROD : POSTCSS_PLUGINS_DEV))
-        .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('.'))
+        // .pipe(gutil.env.production ? gutil.noop() : sourcemaps.write('.'))
         .pipe(gulp.dest('./css'))
 );
 
