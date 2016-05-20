@@ -1,0 +1,25 @@
+@import "reset";
+
+@import "../../bower_components/github-fork-ribbon-css/gh-fork-ribbon";
+.github-fork-ribbon:before {
+    background-color: #000000;
+}
+
+html, body {
+    height: 100%;
+    font-size: 10px;
+}
+
+body {
+    font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: 'liga', 'kern';
+    -moz-font-feature-settings: 'liga', 'kern';
+    font-feature-settings: 'liga', 'kern';
+}
+
+@import "_blocks/header";
