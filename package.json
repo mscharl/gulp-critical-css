@@ -1,6 +1,6 @@
 {
   "name": "gulp-critical-css",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "My spectacular gulp plugin",
   "license": "MIT",
   "repository": "mscharl/gulp-critical-css",
@@ -16,7 +16,8 @@
     "test": "xo && ava"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "plugins"
   ],
   "keywords": [
     "gulpplugin"
