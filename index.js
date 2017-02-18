@@ -1,6 +1,6 @@
 /**
- * Loading modules
- */
+* Loading modules
+*/
 const path = require('path');
 const gutil = require('gulp-util');
 const through = require('through2');
@@ -8,32 +8,36 @@ const assign = require('lodash.assign');
 const postcss = require('postcss');
 
 /**
- * Loading internal plugins
- */
-const cleanCritical = require('./plugins/cleanCritical.js');
-const extractCritical = require('./plugins/extractCritical.js');
+* Loading internal plugins
+*/
+const cleanCritical = require('./plugins/clean-critical.js');
+const extractCritical = require('./plugins/extract-critical.js');
 
 /**
- * Set defaults
- * @type {{selectors: Array}}
- */
+* Set defaults
+* @type {{selectors: Array}}
+*/
 const DEFAULT_OPTIONS = {
-	selectors: []
+	selectors: [],
+	keep: true
 };
 
 /**
- * Exporting myself
- * @param opts
- */
+* Exporting myself
+* @param opts
+*/
 module.exports = function (opts) {
 	/**
-	 * Set options
-	 * @type {{selectors: Array}}
-	 */
+	* Set options
+	* @type {{selectors: Array}}
+	*/
 	opts = assign({}, DEFAULT_OPTIONS, opts || {});
 
 	if (!Array.isArray(opts.selectors)) {
 		throw new gutil.PluginError('gulp-critical-css', 'Option `selectors` is expected to be an array');
+	}
+	if (typeof opts.keep !== 'boolean') {
+		throw new gutil.PluginError('gulp-critical-css', 'Option `keep` is expected to be a boolean');
 	}
 	opts.selectors.every(function (selector) {
 		if (typeof selector !== 'string' && !(selector instanceof RegExp)) {
@@ -44,8 +48,8 @@ module.exports = function (opts) {
 	});
 
 	/**
-	 * The transformer
-	 */
+	* The transformer
+	*/
 	return through.obj(function (file, enc, cb) {
 		// no file - no work
 		if (file.isNull()) {
@@ -64,9 +68,14 @@ module.exports = function (opts) {
 			// Create a filepath object to modify the filenames
 			var filePath = path.parse(file.path);
 
+			opts.keep = false;
+
 			// Let postcss generate our critical and cleaned stylesheets
-			var cleanedCSS = postcss([cleanCritical(opts)]).process(file.contents.toString()).css;
 			var criticalCSS = postcss([extractCritical(opts), cleanCritical(opts)]).process(file.contents.toString()).css;
+
+			opts.clean = !opts.keep;
+
+			var cleanedCSS = postcss([cleanCritical(opts)]).process(file.contents.toString()).css;
 
 			// Create the new files
 			var cleanedFile = file.clone();
@@ -78,7 +87,7 @@ module.exports = function (opts) {
 
 			// update the file paths/names
 			cleanedFile.path = path.join(filePath.dir, filePath.name + filePath.ext);
-			criticalFile.path = path.join(filePath.dir, filePath.name + ".critical" + filePath.ext);
+			criticalFile.path = path.join(filePath.dir, filePath.name + '.critical' + filePath.ext);
 
 			// Pass the files on to the next step
 			this.push(cleanedFile);

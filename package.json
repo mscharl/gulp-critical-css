@@ -30,7 +30,7 @@
     "through2": "^2.0.1"
   },
   "devDependencies": {
-    "ava": "^0.14.0",
-    "xo": "^0.14.0"
+    "ava": "latest",
+    "xo": "latest"
   }
 }
